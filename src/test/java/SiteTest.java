@@ -22,8 +22,8 @@ public class SiteTest {
 
     @Test
     public void testCase() {
-        new Step1(driver).execStep();
-        new Step2(driver).execStep();
+        new StepLogin(driver).execStep();
+        new StepQA(driver).execStep();
     }
 
     @AfterClass

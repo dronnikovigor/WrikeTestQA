@@ -15,7 +15,6 @@ class HomePage {
     @FindBy(xpath = "//button[@class='wg-btn wg-btn--blue modal-form-trial__submit']")
     private WebElement createBtn;
 
-
     HomePage(WebDriver driver) {
         this.driver = driver;
         driver.get(PAGE_URL);

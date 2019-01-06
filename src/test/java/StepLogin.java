@@ -2,13 +2,13 @@ import org.openqa.selenium.WebDriver;
 
 import java.security.SecureRandom;
 
-public class Step1 implements Steps {
+public class StepLogin implements Steps {
     private static WebDriver driver;
     private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     private static SecureRandom rnd = new SecureRandom();
 
-    Step1(WebDriver driver) {
-        Step1.driver = driver;
+    StepLogin(WebDriver driver) {
+        StepLogin.driver = driver;
     }
 
     public void execStep() {
