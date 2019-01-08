@@ -7,4 +7,4 @@ Stack of technologies:
 * Test framework: junit4
 * UI test: selenium 3 (without wrappers)
 * Pattern: pageObject (test -> steps -> pages)
-* Report: allure (to realise)
+* Report: allure

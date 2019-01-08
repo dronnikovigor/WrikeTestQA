@@ -57,8 +57,7 @@ public class ResendPage {
         if (i == 9) {
             driver.findElement(By.xpath("//label[@class='switch switch--text switch--fullwidth']/button[@class='switch__button' and 1]")).click();
             driver.findElement(By.xpath("//input[@class='switch__input']")).sendKeys("need to think");
-        }
-        else
+        } else
             btns.get(i).click();
     }
 

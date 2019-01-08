@@ -25,3 +25,4 @@
 /test/test.iml
 /odkl_pts_ejb.dat
 *.DS_Store
+/.allure

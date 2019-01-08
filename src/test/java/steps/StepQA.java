@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.ResendPage;
 
-public class StepQA{
+public class StepQA {
     private static WebDriver driver;
     private ResendPage resendPage;
 
