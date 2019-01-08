@@ -1,9 +1,11 @@
+package pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-class HomePage {
+public class HomePage {
     private WebDriver driver;
 
     private static String PAGE_URL = "https://wrike.com";
@@ -15,21 +17,21 @@ class HomePage {
     @FindBy(xpath = "//button[@class='wg-btn wg-btn--blue modal-form-trial__submit']")
     private WebElement createBtn;
 
-    HomePage(WebDriver driver) {
+    public HomePage(WebDriver driver) {
         this.driver = driver;
         driver.get(PAGE_URL);
         PageFactory.initElements(driver, this);
     }
 
-    void clickStartBtn() {
+    public void clickStartBtn() {
         startBtn.click();
     }
 
-    void fillInEmail(String email) {
+    public void fillInEmail(String email) {
         emailField.sendKeys(email);
     }
 
-    void clickCreateBtn() {
+    public void clickCreateBtn() {
         createBtn.click();
     }
 }

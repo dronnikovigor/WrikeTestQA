@@ -1,3 +1,5 @@
+package pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-class ResendPage {
+public class ResendPage {
     private WebDriver driver;
 
     private static String PAGE_URL = "https://wrike.com/resend/";
@@ -20,12 +22,12 @@ class ResendPage {
     @FindBy(xpath = "//button[@class='wg-btn wg-btn--white wg-btn--hollow button js-button']")
     private WebElement resendBtn;
 
-    ResendPage(WebDriver driver) {
+    public ResendPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    void waitForLoad() {
+    public void waitForLoad() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//p[@class='h4 subtitle']"))));
         wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//iframe[contains(@src,'www.google.com')]"))));
@@ -35,53 +37,60 @@ class ResendPage {
         driver.switchTo().defaultContent();
     }
 
-    void waitForResend() {
+    public void waitForResend() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//p[@class='h4 subtitle']/span[@class='again' and 1]"))));
     }
 
-    void clickInterestedRadio() {
+    public void clickInterestedRadio() {
         int i = randomInt(0, 1);
-        if (i < btns.size())
-            btns.get(i).click();
-        else
-            btns.get(0).click();
+        btns.get(i).click();
     }
 
-    void clickMembersRadio() {
+    public void clickMembersRadio() {
         int i = randomInt(2, 6);
-        if (i < btns.size())
-            btns.get(i).click();
-        else
-            btns.get(0).click();
+        btns.get(i).click();
     }
 
-    void clickProcessRadio() {
+    public void clickProcessRadio() {
         int i = randomInt(7, 9);
-        if (i < btns.size())
-            btns.get(i).click();
+        if (i == 9) {
+            driver.findElement(By.xpath("//label[@class='switch switch--text switch--fullwidth']/button[@class='switch__button' and 1]")).click();
+            driver.findElement(By.xpath("//input[@class='switch__input']")).sendKeys("need to think");
+        }
         else
-            btns.get(0).click();
+            btns.get(i).click();
     }
 
-    void clickCreateBtn() {
+    public void clickCreateBtn() {
         createBtn.click();
     }
 
-    void clickResendBtn() {
+    public void clickResendBtn() {
         resendBtn.click();
     }
 
-    boolean isFieldsFilled() {
+    public boolean isFieldsFilled() {
         return createBtn.isEnabled();
     }
 
-    boolean isPageOpened() {
+    public boolean isPageOpened() {
         return driver.getPageSource().contains("Thank you for choosing Wrike!");
     }
 
-    boolean isEmailResend() {
+    public boolean isEmailResend() {
         return driver.getPageSource().contains("again");
+    }
+
+    public boolean isTwitterBtnExist() {
+        driver.findElement(By.xpath("//*[name()='a' and @*='https://twitter.com/wrike']"));
+        return true;
+    }
+
+    public boolean isTwitterBtnCorrect() {
+        driver.findElement(By.xpath("//*[name()='use' and " +
+                "@*='/content/themes/wrike/dist/img/sprite/vector/footer-icons.symbol.svg?v1#twitter']"));
+        return true;
     }
 
     private int randomInt(int from, int to) {
