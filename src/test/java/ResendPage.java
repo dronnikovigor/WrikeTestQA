@@ -17,6 +17,8 @@ class ResendPage {
     private List<WebElement> btns;
     @FindBy(xpath = "//button[@class='submit wg-btn wg-btn--navy js-survey-submit']")
     private WebElement createBtn;
+    @FindBy(xpath = "//button[@class='wg-btn wg-btn--white wg-btn--hollow button js-button']")
+    private WebElement resendBtn;
 
     ResendPage(WebDriver driver) {
         this.driver = driver;
@@ -33,9 +35,13 @@ class ResendPage {
         driver.switchTo().defaultContent();
     }
 
+    void waitForResend() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//p[@class='h4 subtitle']/span[@class='again' and 1]"))));
+    }
+
     void clickInterestedRadio() {
-        int i = (int) (Math.random() * (1 + 1));
-        System.out.println(btns.size());
+        int i = randomInt(0, 1);
         if (i < btns.size())
             btns.get(i).click();
         else
@@ -43,7 +49,7 @@ class ResendPage {
     }
 
     void clickMembersRadio() {
-        int i = 2 + (int) (Math.random() * ((6 - 2) + 1));
+        int i = randomInt(2, 6);
         if (i < btns.size())
             btns.get(i).click();
         else
@@ -51,8 +57,7 @@ class ResendPage {
     }
 
     void clickProcessRadio() {
-        int i = 7 + (int) (Math.random() * ((9 - 7) + 1));
-        System.out.println(btns.size());
+        int i = randomInt(7, 9);
         if (i < btns.size())
             btns.get(i).click();
         else
@@ -63,11 +68,23 @@ class ResendPage {
         createBtn.click();
     }
 
+    void clickResendBtn() {
+        resendBtn.click();
+    }
+
     boolean isFieldsFilled() {
         return createBtn.isEnabled();
     }
 
     boolean isPageOpened() {
-        return driver.getPageSource().contains("Help us provide you the best possible experience");
+        return driver.getPageSource().contains("Thank you for choosing Wrike!");
+    }
+
+    boolean isEmailResend() {
+        return driver.getPageSource().contains("again");
+    }
+
+    private int randomInt(int from, int to) {
+        return from + (int) (Math.random() * ((to - from) + 1));
     }
 }

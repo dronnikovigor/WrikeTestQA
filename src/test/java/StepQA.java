@@ -18,5 +18,10 @@ public class StepQA implements Steps {
         resendPage.clickProcessRadio();
         Assert.assertTrue(resendPage.isFieldsFilled());
         resendPage.clickCreateBtn();
+
+        resendPage.clickResendBtn();
+        resendPage.waitForResend();
+        Assert.assertTrue(resendPage.isEmailResend());
+
     }
 }
